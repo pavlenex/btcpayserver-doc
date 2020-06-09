@@ -1,6 +1,8 @@
 # BTCPay Server Wallet
 
-BTCPay Server has a built in, full-node reliant wallet that allows easier funds management. Each [store](CreateStore.md) and cryptocurrency have a separate wallet displayed on the wallets page. A wallet can be accessed by clicking **Wallets** from the top menu. To access a particular wallet, click **Manage**.
+BTCPay Server has a built in, full-node reliant wallet that allows easier funds management. 
+
+Each [store](CreateStore.md) and cryptocurrency have a separate wallet displayed on the wallets page. A wallet can be accessed by clicking **Wallets** from the top menu. To access a particular wallet, click **Manage**.
 
 ![Wallets Page BTCPay](./img/BTCPayWallets1.png)
 
@@ -25,7 +27,7 @@ An overview of the incoming (green), outgoing (red) and unconfirmed (grayed out)
 
 The Send function allows spending of the funds from the BTCPay wallet.
 
-![Send from the Wallet](./img/Wallet/WalletSend.png)
+![Send from the Wallet](./img/Wallet/WalleStend.png)
 
 #### Signing a transaction (spending)
 
@@ -55,9 +57,9 @@ Check [BTCPay Vault](Vault.md) documentation for instructions on how to set up a
 ##### Signing with a Hot Wallet
 
 BTCPay Server also allows stores to generate or import a wallet while also storing its private keys. If your store was configured this way, you'll have the option available in the "Sign with.." dropdown.
-
-[Using the hot wallet feature comes with its own security implications, please be sure to read and understand them over at the Hot Wallet documentation.](HotWallet.md)
-
+:::danger
+Using the hot wallet feature comes with its own security implications, please be sure to read and understand them over at the [Hot Wallet documentation](HotWallet.md)
+:::
 #### Advanced Settings
 
 Certain wallet features are available for advanced users. Toggle the `Advanced Settings` within the `Send` tab to preview them.
@@ -102,3 +104,7 @@ Re-scan is a feature that solves both of these problems. Once the scan is comple
 Wallet re-scan requires access to the full node which means that this function is only available for server owners.
 
 Users who use a third party host should use a newly generated xpub key and also use an external wallet like Electrum which allows them to increase the gap limit.
+
+### PSBT
+
+### Settings
