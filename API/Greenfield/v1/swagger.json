@@ -28,7 +28,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "unrestricted"
             ],
             "Basic": []
@@ -57,7 +57,7 @@
         },
         "security": [
           {
-            "API Key": []
+            "API_Key": []
           }
         ]
       },
@@ -81,7 +81,7 @@
         },
         "security": [
           {
-            "API Key": []
+            "API_Key": []
           }
         ]
       }
@@ -133,7 +133,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "unrestricted"
             ],
             "Basic": []
@@ -313,6 +313,26 @@
             "required": false,
             "description": "End date of the period to retrieve invoices",
             "$ref": "#/components/schemas/UnixTimestamp"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "required": false,
+            "description": "Number of records to skip",
+            "schema": {
+              "nullable": true,
+              "type": "number"
+            }
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "required": false,
+            "description": "Number of records returned in response",
+            "schema": {
+              "nullable": true,
+              "type": "number"
+            }
           }
         ],
         "description": "View information about the existing invoices",
@@ -331,7 +351,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canviewinvoices"
             ],
             "Basic": []
@@ -393,7 +413,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.cancreateinvoice"
             ],
             "Basic": []
@@ -449,7 +469,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canviewinvoices"
             ],
             "Basic": []
@@ -506,7 +526,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canmodifyinvoices"
             ],
             "Basic": []
@@ -580,7 +600,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canmodifyinvoices"
             ],
             "Basic": []
@@ -650,65 +670,8 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canviewinvoices"
-            ],
-            "Basic": []
-          }
-        ]
-      },
-      "delete": {
-        "tags": [
-          "Invoices"
-        ],
-        "summary": "Archive invoice",
-        "description": "Archives the specified invoice.",
-        "operationId": "Invoices_ArchiveInvoice",
-        "parameters": [
-          {
-            "name": "storeId",
-            "in": "path",
-            "required": true,
-            "description": "The store the invoice belongs to",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "invoiceId",
-            "in": "path",
-            "required": true,
-            "description": "The invoice to remove",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The invoice has been archived"
-          },
-          "400": {
-            "description": "A list of errors that occurred when archiving the invoice",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationProblemDetails"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "If you are authenticated but forbidden to archive the specified invoice"
-          },
-          "404": {
-            "description": "The key is not found for this invoice"
-          }
-        },
-        "security": [
-          {
-            "API Key": [
-              "btcpay.store.canmodifyinvoices"
             ],
             "Basic": []
           }
@@ -780,7 +743,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canmodifyinvoices"
             ],
             "Basic": []
@@ -843,7 +806,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canmodifyinvoices"
             ],
             "Basic": []
@@ -908,7 +871,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canviewinvoices"
             ],
             "Basic": []
@@ -930,7 +893,8 @@
             "description": "The cryptoCode of the lightning-node to query",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "BTC"
           }
         ],
         "description": "View information about the lightning node",
@@ -955,7 +919,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.server.canuseinternallightningnode"
             ],
             "Basic": []
@@ -977,7 +941,8 @@
             "description": "The cryptoCode of the lightning-node to query",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "BTC"
           }
         ],
         "description": "Connect to another lightning node.",
@@ -1025,7 +990,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.server.canuseinternallightningnode"
             ],
             "Basic": []
@@ -1047,7 +1012,8 @@
             "description": "The cryptoCode of the lightning-node to query",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "BTC"
           }
         ],
         "description": "View information about the current channels of the lightning node",
@@ -1072,7 +1038,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.server.canuseinternallightningnode"
             ],
             "Basic": []
@@ -1092,7 +1058,8 @@
             "description": "The cryptoCode of the lightning-node to query",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "BTC"
           }
         ],
         "description": "Open a channel with another lightning node. You should connect to that node first.",
@@ -1137,7 +1104,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.server.canuseinternallightningnode"
             ],
             "Basic": []
@@ -1159,7 +1126,8 @@
             "description": "The cryptoCode of the lightning-node to query",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "BTC"
           }
         ],
         "description": "Get an on-chain deposit address for the lightning node ",
@@ -1185,7 +1153,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.server.canuseinternallightningnode"
             ],
             "Basic": []
@@ -1207,7 +1175,8 @@
             "description": "The cryptoCode of the lightning-node to query",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "BTC"
           },
           {
             "name": "id",
@@ -1241,7 +1210,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.server.canuseinternallightningnode"
             ],
             "Basic": []
@@ -1263,7 +1232,8 @@
             "description": "The cryptoCode of the lightning-node to query",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "BTC"
           }
         ],
         "description": "Pay a lightning invoice.",
@@ -1311,7 +1281,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.server.canuseinternallightningnode"
             ],
             "Basic": []
@@ -1333,7 +1303,8 @@
             "description": "The cryptoCode of the lightning-node to query",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "BTC"
           }
         ],
         "description": "Create a lightning invoice.",
@@ -1378,7 +1349,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.server.cancreatelightninginvoiceinternalnode"
             ],
             "Basic": []
@@ -1400,7 +1371,8 @@
             "description": "The cryptoCode of the lightning-node to query",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "BTC"
           },
           {
             "name": "storeId",
@@ -1434,8 +1406,8 @@
         },
         "security": [
           {
-            "API Key": [
-              "btcpay.server.canuseinternallightningnode"
+            "API_Key": [
+              "btcpay.store.cancreatelightninginvoice"
             ],
             "Basic": []
           }
@@ -1456,7 +1428,8 @@
             "description": "The cryptoCode of the lightning-node to query",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "BTC"
           },
           {
             "name": "storeId",
@@ -1513,8 +1486,8 @@
         },
         "security": [
           {
-            "API Key": [
-              "btcpay.server.canuseinternallightningnode"
+            "API_Key": [
+              "btcpay.store.cancreatelightninginvoice"
             ],
             "Basic": []
           }
@@ -1535,7 +1508,8 @@
             "description": "The cryptoCode of the lightning-node to query",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "BTC"
           },
           {
             "name": "storeId",
@@ -1569,8 +1543,8 @@
         },
         "security": [
           {
-            "API Key": [
-              "btcpay.server.canuseinternallightningnode"
+            "API_Key": [
+              "btcpay.store.cancreatelightninginvoice"
             ],
             "Basic": []
           }
@@ -1589,7 +1563,8 @@
             "description": "The cryptoCode of the lightning-node to query",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "BTC"
           },
           {
             "name": "storeId",
@@ -1646,8 +1621,8 @@
         },
         "security": [
           {
-            "API Key": [
-              "btcpay.server.canuseinternallightningnode"
+            "API_Key": [
+              "btcpay.store.cancreatelightninginvoice"
             ],
             "Basic": []
           }
@@ -1669,7 +1644,8 @@
             "schema": {
               "type": "string",
               "description": "A bitcoin address belonging to the lightning node"
-            }
+            },
+            "example": "BTC"
           },
           {
             "name": "storeId",
@@ -1703,8 +1679,8 @@
         },
         "security": [
           {
-            "API Key": [
-              "btcpay.server.canuseinternallightningnode"
+            "API_Key": [
+              "btcpay.store.cancreatelightninginvoice"
             ],
             "Basic": []
           }
@@ -1725,7 +1701,8 @@
             "description": "The cryptoCode of the lightning-node to query",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "BTC"
           },
           {
             "name": "storeId",
@@ -1768,8 +1745,8 @@
         },
         "security": [
           {
-            "API Key": [
-              "btcpay.server.canuseinternallightningnode"
+            "API_Key": [
+              "btcpay.store.cancreatelightninginvoice"
             ],
             "Basic": []
           }
@@ -1790,7 +1767,8 @@
             "description": "The cryptoCode of the lightning-node to query",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "BTC"
           },
           {
             "name": "storeId",
@@ -1847,8 +1825,8 @@
         },
         "security": [
           {
-            "API Key": [
-              "btcpay.server.canuseinternallightningnode"
+            "API_Key": [
+              "btcpay.store.cancreatelightninginvoice"
             ],
             "Basic": []
           }
@@ -1869,7 +1847,8 @@
             "description": "The cryptoCode of the lightning-node to query",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "BTC"
           },
           {
             "name": "storeId",
@@ -1923,7 +1902,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.server.cancreatelightninginvoiceinternalnode"
             ],
             "Basic": []
@@ -2066,6 +2045,26 @@
               "type": "string",
               "nullable": true
             }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "required": false,
+            "description": "Number of records to skip",
+            "schema": {
+              "nullable": true,
+              "type": "number"
+            }
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "required": false,
+            "description": "Number of records returned in response",
+            "schema": {
+              "nullable": true,
+              "type": "number"
+            }
           }
         ],
         "description": "View current user's notifications",
@@ -2084,7 +2083,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.user.canmanagenotificationsforuser",
               "btcpay.user.canviewnotificationsforuser"
             ],
@@ -2132,7 +2131,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.user.canmanagenotificationsforuser",
               "btcpay.user.canviewnotificationsforuser"
             ],
@@ -2178,7 +2177,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.user.canmanagenotificationsforuser"
             ],
             "Basic": []
@@ -2226,7 +2225,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.user.canmanagenotificationsforuser"
             ],
             "Basic": []
@@ -2267,7 +2266,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canviewpaymentrequests"
             ],
             "Basic": []
@@ -2329,7 +2328,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canmodifypaymentrequests"
             ],
             "Basic": []
@@ -2385,7 +2384,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canviewpaymentrequests"
             ],
             "Basic": []
@@ -2442,7 +2441,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canmodifypaymentrequests"
             ],
             "Basic": []
@@ -2513,7 +2512,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canmodifypaymentrequests"
             ],
             "Basic": []
@@ -2566,7 +2565,7 @@
         ],
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canmanagepullpayments"
             ],
             "Basic": []
@@ -2588,6 +2587,11 @@
                     "description": "The name of the pull payment",
                     "nullable": true
                   },
+                  "description": {
+                    "type": "string",
+                    "description": "The description of the pull payment",
+                    "nullable": true
+                  },
                   "amount": {
                     "type": "string",
                     "format": "decimal",
@@ -2597,7 +2601,7 @@
                   "currency": {
                     "type": "string",
                     "example": "BTC",
-                    "description": "The currency of the amount. In this current release, this parameter must be set to a cryptoCode like (`BTC`)."
+                    "description": "The currency of the amount."
                   },
                   "period": {
                     "type": "integer",
@@ -2605,6 +2609,13 @@
                     "example": 604800,
                     "nullable": true,
                     "description": "The length of each period in seconds."
+                  },
+                  "BOLT11Expiration": {
+                    "type": "string",
+                    "example": 30,
+                    "default": 30,
+                    "nullable": true,
+                    "description": "If lightning is activated, do not accept BOLT11 invoices with expiration less than … days"
                   },
                   "startsAt": {
                     "type": "integer",
@@ -2622,7 +2633,7 @@
                   },
                   "paymentMethods": {
                     "type": "array",
-                    "description": "The list of supported payment methods supported. In this current release, this must be set to an array with a single entry equals to `currency` (eg. `[ \"BTC\" ]`)",
+                    "description": "The list of supported payment methods supported by this pull payment. Available options can be queried from the `StorePaymentMethods_GetStorePaymentMethods` endpoint",
                     "items": {
                       "type": "string",
                       "example": "BTC"
@@ -2660,7 +2671,7 @@
         ],
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canmanagepullpayments"
             ],
             "Basic": []
@@ -2743,7 +2754,7 @@
         ],
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canmanagepullpayments"
             ],
             "Basic": []
@@ -2856,6 +2867,53 @@
         "security": []
       }
     },
+    "/api/v1/pull-payments/{pullPaymentId}/payouts/{payoutId}": {
+      "parameters": [
+        {
+          "name": "pullPaymentId",
+          "in": "path",
+          "required": true,
+          "description": "The ID of the pull payment",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "payoutId",
+          "in": "path",
+          "required": true,
+          "description": "The ID of the pull payment payout",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get Payout",
+        "operationId": "PullPayments_GetPayout",
+        "description": "Get payout",
+        "responses": {
+          "200": {
+            "description": "A specific payout of a pull payment",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PayoutData"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Pull payment payout not found"
+          }
+        },
+        "tags": [
+          "Pull payments (Public)",
+          "Pull payments payout (Public)"
+        ],
+        "security": []
+      }
+    },
     "/api/v1/stores/{storeId}/payouts/{payoutId}": {
       "parameters": [
         {
@@ -2942,7 +3000,7 @@
         ],
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canmanagepullpayments"
             ],
             "Basic": []
@@ -2966,7 +3024,7 @@
         ],
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canmanagepullpayments"
             ],
             "Basic": []
@@ -3032,7 +3090,7 @@
         ],
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canmanagepullpayments"
             ],
             "Basic": []
@@ -3062,7 +3120,7 @@
         },
         "security": [
           {
-            "API Key": [],
+            "API_Key": [],
             "Basic": []
           }
         ]
@@ -3113,7 +3171,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canviewstoresettings"
             ],
             "Basic": []
@@ -3163,7 +3221,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canmodifystoresettings"
             ],
             "Basic": []
@@ -3194,7 +3252,8 @@
             "description": "The crypto code of the payment method to fetch",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "BTC"
           }
         ],
         "description": "View information about the specified payment method",
@@ -3219,7 +3278,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canmodifystoresettings"
             ],
             "Basic": []
@@ -3248,7 +3307,8 @@
             "description": "The crypto code of the payment method to update",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "BTC"
           }
         ],
         "description": "Update the specified store's payment method",
@@ -3257,7 +3317,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LightningNetworkPaymentMethodData"
+                "$ref": "#/components/schemas/UpdateLightningNetworkPaymentMethodRequest"
               }
             }
           },
@@ -3295,7 +3355,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canmodifystoresettings"
             ],
             "Basic": []
@@ -3324,7 +3384,8 @@
             "description": "The crypto code of the payment method to update",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "BTC"
           }
         ],
         "description": "Removes the specified store payment method.",
@@ -3351,7 +3412,248 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
+              "btcpay.store.canmodifystoresettings"
+            ],
+            "Basic": []
+          }
+        ]
+      }
+    },
+    "/api/v1/stores/{storeId}/payment-methods/LNURL": {
+      "get": {
+        "tags": [
+          "Store Payment Methods (LNURL)"
+        ],
+        "summary": "Get store LNURL payment methods",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "required": true,
+            "description": "The store to fetch",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "enabled",
+            "in": "query",
+            "required": false,
+            "description": "Fetch payment methods that are enabled/disabled only",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "description": "View information about the stores' configured LNURL payment methods",
+        "operationId": "StoreLNURLPayPaymentMethods_GetLNURLPayPaymentMethods",
+        "responses": {
+          "200": {
+            "description": "list of payment methods",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LNURLPayPaymentMethodDataList"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "API_Key": [
+              "btcpay.store.canmodifystoresettings"
+            ],
+            "Basic": []
+          }
+        ]
+      }
+    },
+    "/api/v1/stores/{storeId}/payment-methods/LNURL/{cryptoCode}": {
+      "get": {
+        "tags": [
+          "Store Payment Methods (LNURL Pay)"
+        ],
+        "summary": "Get store LNURL Pay payment method",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "required": true,
+            "description": "The store to fetch",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cryptoCode",
+            "in": "path",
+            "required": true,
+            "description": "The crypto code of the payment method to fetch",
+            "schema": {
+              "type": "string"
+            },
+            "example": "BTC"
+          }
+        ],
+        "description": "View information about the specified payment method",
+        "operationId": "StoreLNURLPayPaymentMethods_GetLNURLPayPaymentMethod",
+        "responses": {
+          "200": {
+            "description": "specified payment method",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LNURLPayPaymentMethodData"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "If you are authenticated but forbidden to view the specified store"
+          },
+          "404": {
+            "description": "The key is not found for this store/payment method"
+          }
+        },
+        "security": [
+          {
+            "API_Key": [
+              "btcpay.store.canmodifystoresettings"
+            ],
+            "Basic": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Store Payment Methods (LNURL Pay)"
+        ],
+        "summary": "Update store LNURL Pay payment method",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "required": true,
+            "description": "The store to fetch",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cryptoCode",
+            "in": "path",
+            "required": true,
+            "description": "The crypto code of the payment method to update",
+            "schema": {
+              "type": "string"
+            },
+            "example": "BTC"
+          }
+        ],
+        "description": "Update the specified store's payment method",
+        "requestBody": {
+          "x-name": "request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LNURLPayPaymentMethodData"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "operationId": "StoreLNURLPayPaymentMethods_UpdateLNURLPayPaymentMethod",
+        "responses": {
+          "200": {
+            "description": "updated specified payment method",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LNURLPayPaymentMethodData"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "A list of errors that occurred when updating the store payment method",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "If you are authenticated but forbidden to update the specified store"
+          },
+          "404": {
+            "description": "The key is not found for this store"
+          }
+        },
+        "security": [
+          {
+            "API_Key": [
+              "btcpay.store.canmodifystoresettings"
+            ],
+            "Basic": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Store Payment Methods (LNURL Pay)"
+        ],
+        "summary": "Remove store LNURL Pay payment method",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "required": true,
+            "description": "The store to fetch",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cryptoCode",
+            "in": "path",
+            "required": true,
+            "description": "The crypto code of the payment method to update",
+            "schema": {
+              "type": "string"
+            },
+            "example": "BTC"
+          }
+        ],
+        "description": "Removes the specified store payment method.",
+        "responses": {
+          "200": {
+            "description": "The payment method has been removed"
+          },
+          "400": {
+            "description": "A list of errors that occurred when removing the payment method",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "If you are authenticated but forbidden to remove the specified payment method"
+          },
+          "404": {
+            "description": "The key is not found for this store/payment-method"
+          }
+        },
+        "security": [
+          {
+            "API_Key": [
               "btcpay.store.canmodifystoresettings"
             ],
             "Basic": []
@@ -3401,7 +3703,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canviewstoresettings"
             ],
             "Basic": []
@@ -3409,7 +3711,7 @@
         ]
       }
     },
-    "/api/v1/stores/{storeId}/payment-methods/OnChain/{cryptoCode}": {
+    "/api/v1/stores/{storeId}/payment-methods/onchain/{cryptoCode}": {
       "get": {
         "tags": [
           "Store Payment Methods (On Chain)"
@@ -3432,7 +3734,8 @@
             "description": "The crypto code of the payment method to fetch",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "BTC"
           }
         ],
         "description": "View information about the specified payment method",
@@ -3457,7 +3760,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canviewstoresettings"
             ],
             "Basic": []
@@ -3486,7 +3789,8 @@
             "description": "The crypto code of the payment method to update",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "BTC"
           }
         ],
         "description": "Update the specified store's payment method",
@@ -3495,7 +3799,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/OnChainPaymentMethodData"
+                "$ref": "#/components/schemas/UpdateOnChainPaymentMethodRequest"
               }
             }
           },
@@ -3533,7 +3837,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canmodifystoresettings"
             ],
             "Basic": []
@@ -3562,7 +3866,8 @@
             "description": "The crypto code of the payment method to update",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "BTC"
           }
         ],
         "description": "Removes the specified store payment method.",
@@ -3589,7 +3894,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canmodifystoresettings"
             ],
             "Basic": []
@@ -3620,7 +3925,8 @@
             "description": "The crypto code of the payment method to fetch",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "BTC"
           },
           {
             "name": "offset",
@@ -3663,7 +3969,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canviewstoresettings"
             ],
             "Basic": []
@@ -3692,7 +3998,8 @@
             "description": "The crypto code of the payment method to fetch",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "BTC"
           },
           {
             "name": "offset",
@@ -3714,13 +4021,20 @@
           }
         ],
         "description": "View addresses of a proposed payment method of the store",
-        "operationId": "StoreOnChainPaymentMethods_GetOnChainPaymentMethodPreview",
+        "operationId": "StoreOnChainPaymentMethods_POSTOnChainPaymentMethodPreview",
         "requestBody": {
           "x-name": "request",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/OnChainPaymentMethodData"
+                "type": "object",
+                "properties": {
+                  "derivationScheme": {
+                    "type": "string",
+                    "description": "The derivation scheme",
+                    "example": "xpub..."
+                  }
+                }
               }
             }
           },
@@ -3747,8 +4061,178 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canviewstoresettings"
+            ],
+            "Basic": []
+          }
+        ]
+      }
+    },
+    "/api/v1/stores/{storeId}/users": {
+      "get": {
+        "tags": [
+          "Stores (Users)"
+        ],
+        "summary": "Get store users",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "required": true,
+            "description": "The store to fetch",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "View users of the specified store",
+        "operationId": "Stores_GetStoreUsers",
+        "responses": {
+          "200": {
+            "description": "specified store users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StoreUserDataList"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "If you are authenticated but forbidden to view the specified store"
+          },
+          "404": {
+            "description": "The key is not found for this store"
+          }
+        },
+        "security": [
+          {
+            "API_Key": [
+              "btcpay.store.canmodifystoresettings"
+            ],
+            "Basic": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Stores (Users)"
+        ],
+        "summary": "Add a store user",
+        "description": "Add a store user",
+        "requestBody": {
+          "x-name": "request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StoreUserData"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "The user as added"
+          },
+          "400": {
+            "description": "A list of errors that occurred when creating the store",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "If you are authenticated but forbidden to add new stores"
+          },
+          "409": {
+            "description": "Error code: `duplicate-store-user-role`. Removing this user would result in the store having no owner.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "API_Key": [
+              "btcpay.store.canmodifystoresettings"
+            ],
+            "Basic": []
+          }
+        ]
+      }
+    },
+    "/api/v1/stores/{storeId}/users/{userId}": {
+      "delete": {
+        "tags": [
+          "Stores (Users)"
+        ],
+        "summary": "Remove Store User",
+        "description": "Removes the specified store user. If there is no other owner, this endpoint will fail.",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "required": true,
+            "description": "The store",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "The user",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The user has been removed"
+          },
+          "400": {
+            "description": "A list of errors that occurred when removing the store",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Error code: `store-user-role-orphaned`. Removing this user would result in the store having no owner.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "If you are authenticated but forbidden to remove the specified store"
+          },
+          "404": {
+            "description": "The key is not found for this store"
+          }
+        },
+        "security": [
+          {
+            "API_Key": [
+              "btcpay.store.canmodifystoresettings"
             ],
             "Basic": []
           }
@@ -3778,7 +4262,8 @@
             "description": "The crypto code of the payment method to fetch",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "BTC"
           }
         ],
         "description": "View information about the specified wallet",
@@ -3803,7 +4288,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canmodifystoresettings"
             ],
             "Basic": []
@@ -3834,7 +4319,8 @@
             "description": "The crypto code of the payment method to fetch",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "BTC"
           },
           {
             "name": "blockTarget",
@@ -3869,8 +4355,8 @@
         },
         "security": [
           {
-            "API Key": [
-              "btcpay.store.canmodifystoresettings"
+            "API_Key": [
+              "btcpay.store.canviewstoresettings"
             ],
             "Basic": []
           }
@@ -3900,7 +4386,8 @@
             "description": "The crypto code of the payment method to fetch",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "BTC"
           },
           {
             "name": "forceGenerate",
@@ -3908,7 +4395,8 @@
             "required": false,
             "description": "Whether to generate a new address for this request even if the previous one was not used",
             "schema": {
-              "type": "string"
+              "type": "boolean",
+              "default": false
             }
           }
         ],
@@ -3934,7 +4422,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canmodifystoresettings"
             ],
             "Basic": []
@@ -3963,7 +4451,8 @@
             "description": "The crypto code of the payment method to fetch",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "BTC"
           }
         ],
         "description": "UnReserve address",
@@ -3981,7 +4470,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canmodifystoresettings"
             ],
             "Basic": []
@@ -4012,7 +4501,8 @@
             "description": "The crypto code of the wallet to fetch",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "BTC"
           },
           {
             "name": "statusFilter",
@@ -4066,11 +4556,14 @@
           },
           "404": {
             "description": "The key is not found for this store/wallet"
+          },
+          "503": {
+            "description": "You need to allow non-admins to use hotwallets for their stores (in /server/policies)"
           }
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canmodifystoresettings"
             ],
             "Basic": []
@@ -4099,7 +4592,8 @@
             "description": "The crypto code of the wallet",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "BTC"
           }
         ],
         "requestBody": {
@@ -4142,7 +4636,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canmodifystoresettings"
             ],
             "Basic": []
@@ -4173,7 +4667,8 @@
             "description": "The crypto code of the wallet to fetch",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "BTC"
           },
           {
             "name": "transactionId",
@@ -4207,7 +4702,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canmodifystoresettings"
             ],
             "Basic": []
@@ -4238,7 +4733,8 @@
             "description": "The crypto code of the wallet to fetch",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "BTC"
           }
         ],
         "description": "Get store on-chain wallet utxos",
@@ -4266,7 +4762,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canmodifystoresettings"
             ],
             "Basic": []
@@ -4296,7 +4792,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canviewstoresettings"
             ],
             "Basic": []
@@ -4348,7 +4844,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canmodifystoresettings"
             ],
             "Basic": []
@@ -4395,7 +4891,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canviewstoresettings"
             ],
             "Basic": []
@@ -4462,7 +4958,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canmodifystoresettings"
             ],
             "Basic": []
@@ -4509,7 +5005,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.canmodifystoresettings"
             ],
             "Basic": []
@@ -4539,7 +5035,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.user.canviewprofile"
             ],
             "Basic": []
@@ -4560,7 +5056,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.user.candeleteuser"
             ],
             "Basic": []
@@ -4638,7 +5134,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.server.cancreateuser"
             ],
             "Basic": []
@@ -4714,7 +5210,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.webhooks.canmodifywebhooks"
             ],
             "Basic": []
@@ -4763,7 +5259,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.webhooks.canmodifywebhooks"
             ],
             "Basic": []
@@ -4816,7 +5312,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.webhooks.canmodifywebhooks"
             ],
             "Basic": []
@@ -4864,7 +5360,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.webhooks.canmodifywebhooks"
             ],
             "Basic": []
@@ -4877,17 +5373,6 @@
         ],
         "summary": "Delete a webhook",
         "description": "Delete a webhook",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/WebhookDataBase"
-              }
-            }
-          },
-          "required": true,
-          "x-position": 1
-        },
         "responses": {
           "200": {
             "description": "The webhook has been deleted"
@@ -4898,7 +5383,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.webhooks.canmodifywebhooks"
             ],
             "Basic": []
@@ -4958,7 +5443,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.webhooks.canmodifywebhooks"
             ],
             "Basic": []
@@ -5019,7 +5504,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.webhooks.canmodifywebhooks"
             ],
             "Basic": []
@@ -5081,7 +5566,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.webhooks.canmodifywebhooks"
             ],
             "Basic": []
@@ -5142,7 +5627,7 @@
         },
         "security": [
           {
-            "API Key": [
+            "API_Key": [
               "btcpay.store.webhooks.canmodifywebhooks"
             ],
             "Basic": []
@@ -5200,11 +5685,7 @@
           "status": {
             "nullable": false,
             "description": "Mark an invoice as completed or invalid.",
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/InvoiceStatusMark"
-              }
-            ]
+            "$ref": "#/components/schemas/InvoiceStatusMark"
           }
         }
       },
@@ -5271,21 +5752,12 @@
       },
       "InvoiceDataBase": {
         "properties": {
-          "currency": {
-            "type": "string",
-            "nullable": true,
-            "description": "The currency the invoice will use"
-          },
           "metadata": {
             "$ref": "#/components/schemas/InvoiceMetadata"
           },
           "checkout": {
             "nullable": true,
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/CheckoutOptions"
-              }
-            ],
+            "$ref": "#/components/schemas/CheckoutOptions",
             "description": "Additional settings to customize the checkout flow"
           }
         }
@@ -5310,7 +5782,13 @@
               "amount": {
                 "type": "string",
                 "format": "decimal",
-                "description": "The amount of the invoice"
+                "description": "The amount of the invoice",
+                "example": "5.00"
+              },
+              "currency": {
+                "type": "string",
+                "description": "The currency of the invoice",
+                "example": "USD"
               },
               "type": {
                 "$ref": "#/components/schemas/InvoiceType",
@@ -5351,6 +5829,17 @@
               "additionalStatus": {
                 "$ref": "#/components/schemas/InvoiceAdditionalStatus",
                 "description": "a secondary status of the invoice"
+              },
+              "availableStatusesForManualMarking": {
+                "type": "array",
+                "description": "The statuses the invoice can be manually marked as",
+                "items": {
+                  "$ref": "#/components/schemas/InvoiceStatus"
+                }
+              },
+              "archived": {
+                "type": "boolean",
+                "description": "true if the invoice is archived"
               }
             }
           }
@@ -5516,7 +6005,14 @@
                 "type": "string",
                 "format": "decimal",
                 "nullable": true,
-                "description": "The amount of the invoice. If null or unspecified, the invoice will be a top-up invoice. (ie. The invoice will consider any payment as a full payment)"
+                "description": "The amount of the invoice. If null or unspecified, the invoice will be a top-up invoice. (ie. The invoice will consider any payment as a full payment)",
+                "example": "5.00"
+              },
+              "currency": {
+                "type": "string",
+                "description": "The currency of the invoice (if null, empty or unspecified, the currency will be the store's settings default)'",
+                "nullable": true,
+                "example": "USD"
               },
               "additionalSearchTerms": {
                 "type": "array",
@@ -5545,11 +6041,7 @@
         "properties": {
           "speedPolicy": {
             "nullable": true,
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/SpeedPolicy"
-              }
-            ],
+            "$ref": "#/components/schemas/SpeedPolicy",
             "description": "This is a risk mitigation parameter for the merchant to configure how they want to fulfill orders depending on the number of block confirmations for the transaction made by the consumer on the selected cryptocurrency"
           },
           "paymentMethods": {
@@ -5559,6 +6051,11 @@
               "type": "string"
             },
             "description": "A specific set of payment methods to use for this invoice (ie. BTC, BTC-LightningNetwork). By default, select all payment methods enabled in the store."
+          },
+          "defaultPaymentMethod": {
+            "type": "string",
+            "nullable": true,
+            "description": "Default payment type for the invoice (e.g., BTC, BTC-LightningNetwork). Default payment method set for the store is used if this parameter is not specified."
           },
           "expirationMinutes": {
             "nullable": true,
@@ -5597,6 +6094,11 @@
             "nullable": true,
             "description": "When the customer has paid the invoice, and a `redirectURL` is set, the checkout is redirected to `redirectURL` automatically if `redirectAutomatically` is true. Defaults to the store's settings. (The default store settings is false)"
           },
+          "requiresRefundEmail": {
+            "type": "boolean",
+            "nullable": true,
+            "description": "Invoice will require user to provide a refund email if this option is set to `true`. Has no effect if `buyerEmail` metadata is set as there is no email to collect in this case."
+          },
           "defaultLanguage": {
             "type": "string",
             "nullable": true,
@@ -5626,7 +6128,12 @@
         "properties": {
           "paymentMethod": {
             "type": "string",
-            "description": "The payment method"
+            "description": "Payment method available for the invoice (e.g., \"BTC\" or \"BTC-LightningNetwork\" or \"BTC-LNURLPAY\")"
+          },
+          "cryptoCode": {
+            "type": "string",
+            "description": "Crypto code of the payment method (e.g., \"BTC\" or \"LTC\")",
+            "example": "BTC"
           },
           "destination": {
             "type": "string",
@@ -5655,7 +6162,7 @@
           "due": {
             "type": "string",
             "format": "decimal",
-            "description": "The total amount left to be paid, converted to this payment method's currency"
+            "description": "The total amount left to be paid, converted to this payment method's currency (will be negative if overpaid)"
           },
           "amount": {
             "type": "string",
@@ -6042,6 +6549,10 @@
             "description": "The id of the payment request",
             "nullable": false
           },
+          "storeId": {
+            "type": "string",
+            "description": "The store identifier that the payment request belongs to"
+          },
           "status": {
             "type": "string",
             "enum": [
@@ -6052,7 +6563,7 @@
             "description": "The status of the payment request",
             "nullable": false
           },
-          "created": {
+          "createdTime": {
             "description": "The creation date of the payment request",
             "allOf": [
               {
@@ -6083,8 +6594,8 @@
           "currency": {
             "type": "string",
             "format": "ISO 4217 Currency code(BTC, EUR, USD, etc)",
-            "description": "The currency of the payment request",
-            "nullable": false
+            "description": "The currency of the payment request. If empty, the store's default currency code will be used.",
+            "nullable": true
           },
           "email": {
             "type": "string",
@@ -6193,7 +6704,12 @@
           "paymentMethod": {
             "type": "string",
             "example": "BTC",
-            "description": "The payment method of the payout"
+            "description": "The payment method of the payout (e.g., \"BTC\" or \"BTC_LightningLike\""
+          },
+          "cryptoCode": {
+            "type": "string",
+            "example": "BTC",
+            "description": "Crypto code of the payment method of the payout (e.g., \"BTC\" or \"LTC\")"
           },
           "paymentMethodAmount": {
             "type": "string",
@@ -6232,7 +6748,11 @@
           },
           "name": {
             "type": "string",
-            "description": "Payment method of of the pull payment"
+            "description": "Name given to pull payment when it was created"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description given to pull payment when it was created"
           },
           "currency": {
             "type": "string",
@@ -6250,6 +6770,11 @@
             "example": 604800,
             "nullable": true,
             "description": "The length of each period in seconds"
+          },
+          "BOLT11Expiration": {
+            "type": "string",
+            "example": 30,
+            "description": "If lightning is activated, do not accept BOLT11 invoices with expiration less than … days"
           },
           "archived": {
             "type": "boolean",
@@ -6319,7 +6844,8 @@
         "properties": {
           "cryptoCode": {
             "type": "string",
-            "description": "The CryptoCode of the crypto currency (eg. BTC)"
+            "description": "The CryptoCode of the crypto currency (eg. BTC)",
+            "example": "BTC"
           },
           "nodeInformation": {
             "$ref": "#/components/schemas/ApplicationServerInfoNodeStatusData"
@@ -6333,6 +6859,11 @@
             "format": "integer",
             "nullable": true,
             "description": "The height of the latest indexed block of the internal indexer"
+          },
+          "available": {
+            "type": "boolean",
+            "description": "True if the full node and the indexer are fully synchronized",
+            "nullable": false
           }
         }
       },
@@ -6343,6 +6874,10 @@
           "enabled": {
             "type": "boolean",
             "description": "Whether the payment method is enabled"
+          },
+          "cryptoCode": {
+            "type": "string",
+            "description": "The currency code of the payment method"
           },
           "data": {
             "type": "object",
@@ -6378,6 +6913,10 @@
             "type": "string",
             "description": "The lightning connection string. Set to 'Internal Node' to use the internal node. (See [this doc](https://github.com/btcpayserver/BTCPayServer.Lightning/blob/master/README.md#examples) for some example)",
             "example": "type=clightning;server=..."
+          },
+          "disableBOLT11PaymentOption": {
+            "type": "boolean",
+            "description": "Whether to disable generation of bolt11 invoices. Useful when wanting to only use LNURL Pay exclusively."
           }
         }
       },
@@ -6390,6 +6929,62 @@
           "enabled": {
             "type": "boolean",
             "description": "Whether the payment method is enabled"
+          },
+          "cryptoCode": {
+            "type": "string",
+            "description": "Crypto code of the payment method"
+          },
+          "paymentMethod": {
+            "type": "string",
+            "description": "The payment method"
+          }
+        }
+      },
+      "UpdateLightningNetworkPaymentMethodRequest": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/LightningNetworkPaymentMethodBaseData"
+        },
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the payment method is enabled"
+          }
+        }
+      },
+      "LNURLPayPaymentMethodDataList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/LNURLPayPaymentMethodData"
+        }
+      },
+      "LNURLPayPaymentMethodBaseData": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "useBech32Scheme": {
+            "type": "boolean",
+            "description": "Whether to use [LUD-01](https://github.com/fiatjaf/lnurl-rfc/blob/luds/01.md)'s bech32 format or to use [LUD-17](https://github.com/fiatjaf/lnurl-rfc/blob/luds/17.md) url formatting. "
+          },
+          "enableForStandardInvoices": {
+            "type": "boolean",
+            "description": "Whether to allow this payment method to also be used for standard invoices and not just topup invoices."
+          },
+          "lud12Enabled": {
+            "type": "boolean",
+            "description": "Allow comments to be passed on via lnurl."
+          }
+        }
+      },
+      "LNURLPayPaymentMethodData": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/LNURLPayPaymentMethodBaseData"
+        },
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the payment method is enabled. Note that this can only enabled when a Lightning Network payment method is available and enabled"
           },
           "cryptoCode": {
             "type": "string",
@@ -6440,7 +7035,7 @@
           }
         }
       },
-      "OnChainPaymentMethodData": {
+      "UpdateOnChainPaymentMethodRequest": {
         "type": "object",
         "additionalProperties": {
           "$ref": "#/components/schemas/OnChainPaymentMethodBaseData"
@@ -6449,7 +7044,31 @@
           "enabled": {
             "type": "boolean",
             "description": "Whether the payment method is enabled"
+          }
+        }
+      },
+      "OnChainPaymentMethodData": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/OnChainPaymentMethodDataPreview"
+        },
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the payment method is enabled"
           },
+          "paymentMethod": {
+            "type": "string",
+            "description": "The payment method"
+          }
+        }
+      },
+      "OnChainPaymentMethodDataPreview": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/OnChainPaymentMethodBaseData"
+        },
+        "properties": {
           "cryptoCode": {
             "type": "string",
             "description": "Crypto code of the payment method"
@@ -6570,6 +7189,31 @@
             ]
           }
         }
+      },
+      "StoreUserDataList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/StoreData"
+        }
+      },
+      "StoreUserData": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "userId": {
+                "type": "string",
+                "description": "The id of the user",
+                "nullable": false
+              },
+              "role": {
+                "type": "string",
+                "description": "The role of the user. Default roles are `Owner` and `Guest`",
+                "nullable": false
+              }
+            }
+          }
+        ]
       },
       "OnChainWalletOverviewData": {
         "type": "object",
@@ -6773,7 +7417,7 @@
           },
           "subtractFromAmount": {
             "type": "boolean",
-            "description": "Whether to subtract from the provided amount. Must be false if `destination` is a BIP21 link"
+            "description": "Whether to subtract the transaction fee from the provided amount. This makes the receiver receive less, or in other words: he or she pays the transaction fee. Also useful if you want to clear out your wallet. Must be false if `destination` is a BIP21 link"
           }
         }
       },
@@ -6792,7 +7436,7 @@
           "feeRate": {
             "type": "number",
             "format": "decimal or long (sats/byte)",
-            "description": "A wallet address or a BIP21 payment link"
+            "description": "Transaction fee."
           },
           "proceedWithPayjoin": {
             "type": "boolean",
@@ -6863,6 +7507,12 @@
             "type": "string",
             "description": "The absolute url of the store",
             "format": "url"
+          },
+          "defaultCurrency": {
+            "type": "string",
+            "description": "The default currency of the store",
+            "default": "USD",
+            "example": "USD"
           },
           "invoiceExpiration": {
             "default": 900,
@@ -6984,7 +7634,7 @@
       },
       "NetworkFeeMode": {
         "type": "string",
-        "description": "Check whether network fee should be added to the invoice if on-chain payment is used. ([More information](https://docs.btcpayserver.org/FAQ/FAQ-Stores/#add-network-fee-to-invoice-vary-with-mining-fees))",
+        "description": "Check whether network fee should be added to the invoice if on-chain payment is used. ([More information](https://docs.btcpayserver.org/FAQ/Stores/#add-network-fee-to-invoice-vary-with-mining-fees))",
         "x-enumNames": [
           "MultiplePaymentsOnly",
           "Always",
@@ -7190,7 +7840,7 @@
           "type": {
             "type": "string",
             "nullable": false,
-            "description": "The type of this event, current available are `InvoiceCreated`, `InvoiceReceivedPayment`, `InvoicePaidInFull`, `InvoiceExpired`, `InvoiceSettled`, and `InvoiceInvalid`."
+            "description": "The type of this event, current available are `InvoiceCreated`, `InvoiceReceivedPayment`, `InvoiceProcessing`, `InvoiceExpired`, `InvoiceSettled`, `InvoiceInvalid`, and `InvoicePaymentSettled`."
           },
           "timestamp": {
             "description": "The timestamp when this delivery has been created",
@@ -7236,6 +7886,16 @@
               "manuallyMarked": {
                 "type": "boolean",
                 "description": "Whether the invoice have been manually marked as confirmed",
+                "nullable": false
+              }
+            }
+          },
+          {
+            "type": "object",
+            "properties": {
+              "overPaid": {
+                "type": "boolean",
+                "description": "Whether this invoice has received more money than expected",
                 "nullable": false
               }
             }
@@ -7291,8 +7951,25 @@
                 "type": "boolean",
                 "description": "Whether this payment has been sent after expiration of the invoice",
                 "nullable": false
+              },
+              "paymentMethod": {
+                "type": "string",
+                "description": "What payment method was used for this payment",
+                "nullable": false
+              },
+              "payment": {
+                "description": "Details about the payment",
+                "$ref": "#/components/schemas/Payment"
               }
             }
+          }
+        ]
+      },
+      "WebhookInvoicePaymentSettledEvent": {
+        "description": "Callback sent if the `type` is `InvoicePaymentSettled`",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/WebhookInvoiceReceivedPaymentEvent"
           }
         ]
       },
@@ -7316,18 +7993,15 @@
       }
     },
     "securitySchemes": {
-      "API Key": {
+      "API_Key": {
         "type": "apiKey",
-        "description": "BTCPay Server supports authenticating and authorizing users through an API Key that is generated by them. Send the API Key as a header value to Authorization with the format: `token {token}`. For a smoother experience, you can generate a url that redirects users to an API key creation screen.\n\n The following permissions are available to the context of the user creating the API Key:\n\n* `unrestricted`: Unrestricted access\n* `btcpay.user.candeleteuser`: Delete user\n* `btcpay.user.canviewprofile`: View your profile\n* `btcpay.user.canmodifyprofile`: Manage your profile\n* `btcpay.user.canmanagenotificationsforuser`: Manage your notifications\n* `btcpay.user.canviewnotificationsforuser`: View your notifications\n\nThe following permissions are available if the user is an administrator:\n\n* `btcpay.server.cancreateuser`: Create new users\n* `btcpay.server.canmodifyserversettings`: Manage your server\n* `btcpay.server.canuseinternallightningnode`: Use the internal lightning node\n* `btcpay.server.cancreatelightninginvoiceinternalnode`: Create invoices with internal lightning node\n\nThe following permissions applies to all stores of the user, you can limit to a specific store with the following format: `btcpay.store.cancreateinvoice:6HSHAEU4iYWtjxtyRs9KyPjM9GAQp8kw2T9VWbGG1FnZ`:\n\n* `btcpay.store.canmodifystoresettings`: Modify your stores\n* `btcpay.store.webhooks.canmodifywebhooks`: Modify stores webhooks\n* `btcpay.store.canviewstoresettings`: View your stores\n* `btcpay.store.cancreateinvoice`: Create an invoice\n* `btcpay.store.canviewinvoices`: View invoices\n* `btcpay.store.canmodifyinvoices`: View invoices\n* `btcpay.store.canmodifypaymentrequests`: Modify your payment requests\n* `btcpay.store.canviewpaymentrequests`: View your payment requests\n* `btcpay.store.canuselightningnode`: Use the lightning nodes associated with your stores\n* `btcpay.store.cancreatelightninginvoice`: Create invoices the lightning nodes associated with your stores\n\nNote that API Keys only limits permission of a user and can never expand it. If an API Key has the permission `btcpay.server.canmodifyserversettings` but that the user account creating this API Key is not administrator, the API Key will not be able to modify the server settings.\nSome permissions may include other permissions, see [this operation](#operation/permissionsMetadata).\n",
+        "description": "BTCPay Server supports authenticating and authorizing users through an API Key that is generated by them. Send the API Key as a header value to Authorization with the format: `token {token}`. For a smoother experience, you can generate a url that redirects users to an API key creation screen.\n\n The following permissions are available to the context of the user creating the API Key:\n\n* `unrestricted`: Unrestricted access\n* `btcpay.user.candeleteuser`: Delete user\n* `btcpay.user.canviewprofile`: View your profile\n* `btcpay.user.canmodifyprofile`: Manage your profile\n* `btcpay.user.canmanagenotificationsforuser`: Manage your notifications\n* `btcpay.user.canviewnotificationsforuser`: View your notifications\n\nThe following permissions are available if the user is an administrator:\n\n* `btcpay.server.cancreateuser`: Create new users\n* `btcpay.server.canmodifyserversettings`: Manage your server\n* `btcpay.server.canuseinternallightningnode`: Use the internal lightning node\n* `btcpay.server.cancreatelightninginvoiceinternalnode`: Create invoices with internal lightning node\n\nThe following permissions applies to all stores of the user, you can limit to a specific store with the following format: `btcpay.store.cancreateinvoice:6HSHAEU4iYWtjxtyRs9KyPjM9GAQp8kw2T9VWbGG1FnZ`:\n\n* `btcpay.store.canmodifystoresettings`: Modify your stores\n* `btcpay.store.webhooks.canmodifywebhooks`: Modify stores webhooks\n* `btcpay.store.canviewstoresettings`: View your stores\n* `btcpay.store.cancreateinvoice`: Create an invoice\n* `btcpay.store.canviewinvoices`: View invoices\n* `btcpay.store.canmodifyinvoices`: Modify invoices\n* `btcpay.store.canmodifypaymentrequests`: Modify your payment requests\n* `btcpay.store.canviewpaymentrequests`: View your payment requests\n* `btcpay.store.canuselightningnode`: Use the lightning nodes associated with your stores\n* `btcpay.store.cancreatelightninginvoice`: Create invoices the lightning nodes associated with your stores\n\nNote that API Keys only limits permission of a user and can never expand it. If an API Key has the permission `btcpay.server.canmodifyserversettings` but that the user account creating this API Key is not administrator, the API Key will not be able to modify the server settings.\nSome permissions may include other permissions, see [this operation](#operation/permissionsMetadata).\n",
         "name": "Authorization",
-        "in": "header",
-        "scheme": "token"
+        "in": "header"
       },
       "Basic": {
         "type": "http",
         "description": "BTCPay Server supports authenticating and authorizing users through the Basic HTTP authentication scheme. Send the user and password encoded in base64 with the format `Basic {base64(username:password)}`. Using this authentication method implicitly provides you with the `unrestricted` permission",
-        "name": "Authorization",
-        "in": "header",
         "scheme": "Basic"
       }
     }
@@ -7350,7 +8024,7 @@
   "servers": [],
   "security": [
     {
-      "API Key": [],
+      "API_Key": [],
       "Basic": []
     }
   ],
@@ -7445,9 +8119,39 @@
         }
       }
     },
-    "InvoicePaidInFull": {
+    "InvoicePaymentSettled": {
       "post": {
-        "summary": "InvoicePaidInFull",
+        "summary": "InvoicePaymentSettled",
+        "description": "An payment relating to an invoice has settled",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "BTCPay-Sig",
+            "required": true,
+            "description": "The HMAC of the body's byte with the secret's of the webhook. `sha256=HMAC256(UTF8(webhook's secret), body)`",
+            "schema": {
+              "type": "string",
+              "example": "sha256=b438519edde5c8144a4f9bcec51a9d346eca6506887c2ceeae1c0092884a97b9"
+            }
+          }
+        ],
+        "tags": [
+          "Webhooks"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookInvoicePaymentSettledEvent"
+              }
+            }
+          }
+        }
+      }
+    },
+    "InvoiceProcessing": {
+      "post": {
+        "summary": "InvoiceProcessing",
         "description": "Triggers when an invoice is fully paid, but doesn't have the required amount of confirmations on the blockchain yet according to your store's settings.",
         "parameters": [
           {
