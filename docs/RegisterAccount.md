@@ -6,7 +6,7 @@ To register a demo account, visit the [official demo](https://mainnet.demo.btcpa
 
 To deploy an instance of your own, see [choosing a deployment method](/Deployment/README.md).
 
-A non-exhaustive list of third-party hosts can be found in the BTCPay Server [directory](https://directory.btcpayserver.org/filter/hosts).
+A non-exhaustive list of third-party hosts can be found in the BTCPay Server [directory](https://directory.btcpayserver.org/#type=Hosted+BTCPay).
 
 ## Account Registration
 
@@ -17,18 +17,9 @@ To register, visit your BTCPay Server URL and fill in the account registration f
 ![BTCPay Server registration](./img/btcpay-registration-page.png)
 
 
-Once your account is successfully created, you'll be redirected to a new page where you can set up your store. Here, you'll need to provide a store name, select the default currency, and choose a currency rate provider.
+Congratulations! You've successfully created your account on BTCPay Server.
 
-![BTCPay Server registration](./img/btcpay-registration-store-creation.png)
-
-![First Store Creation](./img/FirstStoreCreation.png)
-
-
-Congratulations! You've completed the first step: creating your account and store on BTCPay Server.
-
-Next Step: - [Connecting a Wallet](./WalletSetup.md).
-
-If you need to manage multiple stores on your server instance, refer to [Creating a store](./CreateStore.md) for detailed instructions.
+**Next Step:** [Create a Store](./CreateStore.md) to start accepting payments.
 
 
 ### Configuring e-mail
